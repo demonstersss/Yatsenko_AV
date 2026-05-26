@@ -4,9 +4,9 @@ using Yatsenko_AV.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("ApplicationContext") ?? throw new InvalidOperationException("Connection string 'ApplicationContext' not found.");
+// var connectionString = builder.Configuration.GetConnectionString("ApplicationContext") ?? throw new InvalidOperationException("Connection string 'ApplicationContext' not found.");
 
-builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlite(connectionString));
+// builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlite(connectionString));
 
 var db = new SwitchDb(builder);
 
@@ -28,6 +28,19 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 		options.Cookie.Name = "YatsenkoAuth";
 		options.ExpireTimeSpan = TimeSpan.FromHours(8);
 		options.SlidingExpiration = true;
+		options.Events = new CookieAuthenticationEvents
+		{
+			OnRedirectToLogin = context =>
+			{
+				context.Response.Redirect(context.RedirectUri);
+				return Task.CompletedTask;
+			},
+			OnRedirectToAccessDenied = context =>
+			{
+				context.Response.Redirect(context.RedirectUri);
+				return Task.CompletedTask;
+			}
+		};
 	});
 
 builder.Services.AddAuthorization(options =>

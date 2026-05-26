@@ -6,8 +6,8 @@ using Yatsenko_AV.Models;
 namespace Yatsenko_AV.Controllers
 {
 	[ApiController]
-	[Route("api/[controller]")] 
-	[Authorize] 
+	[Route("api/[controller]")]
+	[Authorize(Roles = "Admin")]
 	public class OrdersRESTController : ControllerBase
 	{
 		private readonly ApplicationContext _context;
