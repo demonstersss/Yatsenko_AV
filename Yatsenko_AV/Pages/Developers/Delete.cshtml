@@ -1,0 +1,28 @@
+﻿@page "{id:int}"
+@model Yatsenko_AV.Pages.Developers.DeleteModel
+@{
+    ViewData["Title"] = "Удаление разработчика";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h3>🗑️ Удаление разработчика</h3>
+                </div>
+                <div class="card-body">
+                    <p>Вы уверены, что хотите удалить разработчика <strong>"@Model.Developer.Name"</strong>?</p>
+                    
+                    <form method="post">
+                        <input type="hidden" asp-for="Developer.Id" />
+                        <div class="d-flex justify-content-end gap-2">
+                            <a asp-page="Index" class="btn btn-secondary">Отмена</a>
+                            <button type="submit" class="btn btn-danger">Удалить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

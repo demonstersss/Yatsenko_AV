@@ -1,0 +1,46 @@
+﻿@page "{id:int}"
+@model Yatsenko_AV.Pages.Games.EditModel
+@{
+    ViewData["Title"] = "Редактирование игры";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white">
+                    <h3>✏️ Редактирование игры</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <input type="hidden" asp-for="Game.Id" />
+
+                        <div class="mb-3">
+                            <label asp-for="Game.Name" class="form-label fw-bold"></label>
+                            <input asp-for="Game.Name" class="form-control" />
+                            <span asp-validation-for="Game.Name" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Game.Year" class="form-label fw-bold"></label>
+                            <input asp-for="Game.Year" class="form-control" type="number" />
+                            <span asp-validation-for="Game.Year" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Game.GenreId" class="form-label fw-bold"></label>
+                            <select asp-for="Game.GenreId" class="form-select" asp-items="Model.Genres"></select>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Game.DeveloperId" class="form-label fw-bold"></label>
+                            <select asp-for="Game.DeveloperId" class="form-select" asp-items="Model.Developers"></select>
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2 mt-4">
+                            <a href="/Games" class="btn btn-secondary">Отмена</a>
+                            <button type="submit" class="btn btn-success">Сохранить изменения</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

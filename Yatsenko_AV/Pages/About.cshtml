@@ -1,0 +1,60 @@
+﻿@page
+@model Yatsenko_AV.Pages.AboutModel
+@{
+    ViewData["Title"] = "Об авторе";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-dark text-white text-center py-3">
+                    <h2 class="mb-0">👤 Об авторе</h2>
+                </div>
+                <div class="card-body p-5">
+                    <div class="text-center mb-4">
+                        <div class="mb-3">
+                            <i class="bi bi-person-circle" style="font-size: 4.5rem; color: #0d6efd;"></i>
+                        </div>
+                        <h3 class="mb-1">Яценко А.В.</h3>
+                        <p class="text-muted fs-5">Студент • Разработчик ASP.NET Core</p>
+                    </div>
+
+                    <hr>
+
+                    <div class="row text-center">
+                        <div class="col-md-4 mb-3">
+                            <h5 class="text-primary">Проект</h5>
+                            <p class="mb-0">Razor_PG</p>
+                            <small class="text-muted">Каталог видеоигр</small>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <h5 class="text-primary">Технологии</h5>
+                            <p class="mb-0">ASP.NET Core 8 • EF Core • Razor Pages</p>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <h5 class="text-primary">Год</h5>
+                            <p class="mb-0">2026</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-5">
+                        <h5 class="mb-3">О проекте</h5>
+                        <p class="lead">
+                            Данный проект разработан в учебных целях для демонстрации работы
+                            с Razor Pages, Entity Framework Core и СУБД поддержкой.
+                        </p>
+                        <p>
+                            Реализован полный CRUD для сущностей: Игры, Жанры и Разработчики.
+                            Поддерживается переключение между SQLite, MSSQL, MySQL и PostgreSQL.
+                        </p>
+                    </div>
+
+                    <div class="text-center mt-5">
+                        <a href="/" class="btn btn-primary btn-lg px-5">Вернуться на главную</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

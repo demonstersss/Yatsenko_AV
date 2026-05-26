@@ -1,0 +1,23 @@
+﻿@page
+@model Yatsenko_AV.Pages.Account.LoginModel
+
+<h2>Вход</h2>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+
+<form method="post">
+    <div class="mb-3">
+        <label>Логин</label>
+        <input asp-for="Username" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label>Пароль</label>
+        <input asp-for="Password" type="password" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Войти</button>
+</form>
+
+<p>Тестовый аккаунт: <strong>admin / admin</strong></p>

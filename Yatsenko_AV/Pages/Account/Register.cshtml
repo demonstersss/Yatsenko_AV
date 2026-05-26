@@ -1,0 +1,32 @@
+﻿@page
+@model Yatsenko_AV.Pages.Account.RegisterModel
+
+<h2>Регистрация</h2>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+
+@if (!string.IsNullOrEmpty(Model.SuccessMessage))
+{
+    <div class="alert alert-success">@Model.SuccessMessage</div>
+}
+
+<form method="post">
+    <div class="mb-3">
+        <label>Логин</label>
+        <input asp-for="Username" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label>Пароль</label>
+        <input asp-for="Password" type="password" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label>Подтвердите пароль</label>
+        <input asp-for="ConfirmPassword" type="password" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-success">Зарегистрироваться</button>
+</form>
+
+<p><a href="/Account/Login">Уже есть аккаунт? Войти</a></p>

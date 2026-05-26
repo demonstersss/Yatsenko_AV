@@ -1,0 +1,44 @@
+﻿@page
+@model Yatsenko_AV.Pages.Games.IndexModel
+@{
+    ViewData["Title"] = "Игры";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>🎲 Список игр</h2>
+        <a href="/Games/Create" class="btn btn-success shadow-sm">+ Добавить игру</a>
+    </div>
+
+    <table class="table table-hover table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Название</th>
+                <th>Год</th>
+                <th>Жанр</th>
+                <th>Разработчик</th>
+                <th class="text-center">Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var game in Model.Games)
+            {
+                <tr>
+                    <td><strong>@game.Name</strong></td>
+                    <td>@game.Year</td>
+                    <td>@game.Genre?.Name</td>
+                    <td>@game.Developer?.Name</td>
+                    <td class="text-center">
+                        <a asp-page="Edit" asp-route-id="@game.Id" class="btn btn-sm btn-primary me-1">Изменить</a>
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@game.Id" class="d-inline">
+                            <a asp-page="Delete" asp-route-id="@game.Id"
+                                   class="btn btn-sm btn-danger">
+                                Удалить
+                            </a>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

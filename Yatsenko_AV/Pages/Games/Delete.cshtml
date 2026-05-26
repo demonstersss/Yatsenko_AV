@@ -1,0 +1,39 @@
+﻿@page "{id:int}"
+@model Yatsenko_AV.Pages.Games.DeleteModel
+@{
+    ViewData["Title"] = "Удаление игры";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h3 class="mb-0">🗑️ Подтверждение удаления</h3>
+                </div>
+                <div class="card-body">
+                    <h5>Вы действительно хотите удалить игру?</h5>
+                    <hr />
+                    <dl class="row">
+                        <dt class="col-sm-4">Название</dt>
+                        <dd class="col-sm-8">@Model.Game?.Name</dd>
+                        <dt class="col-sm-4">Год</dt>
+                        <dd class="col-sm-8">@Model.Game?.Year</dd>
+                        <dt class="col-sm-4">Жанр</dt>
+                        <dd class="col-sm-8">@Model.Game?.Genre?.Name</dd>
+                        <dt class="col-sm-4">Разработчик</dt>
+                        <dd class="col-sm-8">@Model.Game?.Developer?.Name</dd>
+                    </dl>
+
+                    <form method="post">
+                        <input type="hidden" asp-for="Game.Id" />
+                        <div class="d-flex justify-content-end gap-2 mt-4">
+                            <a asp-page="Index" class="btn btn-secondary">Отмена</a>
+                            <button type="submit" class="btn btn-danger">Да, удалить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
