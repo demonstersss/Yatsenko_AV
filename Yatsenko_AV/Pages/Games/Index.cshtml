@@ -7,7 +7,10 @@
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>🎲 Список игр</h2>
-        <a href="/Games/Create" class="btn btn-success shadow-sm">+ Добавить игру</a>
+        @if (User.IsInRole("Admin"))
+        {
+            <a href="/Games/Create" class="btn btn-success shadow-sm">+ Добавить игру</a>
+        }
     </div>
 
     <table class="table table-hover table-bordered">
@@ -29,16 +32,31 @@
                     <td>@game.Genre?.Name</td>
                     <td>@game.Developer?.Name</td>
                     <td class="text-center">
-                        <a asp-page="Edit" asp-route-id="@game.Id" class="btn btn-sm btn-primary me-1">Изменить</a>
-                        <form method="post" asp-page-handler="Delete" asp-route-id="@game.Id" class="d-inline">
-                            <a asp-page="Delete" asp-route-id="@game.Id"
-                                   class="btn btn-sm btn-danger">
-                                Удалить
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-page="Edit" asp-route-id="@game.Id" class="btn btn-sm btn-primary me-1">Изменить</a>
+                            <form method="post" asp-page-handler="Delete" asp-route-id="@game.Id" class="d-inline">
+                                <a asp-page="Delete" asp-route-id="@game.Id" class="btn btn-sm btn-danger">
+                                    Удалить
+                                </a>
+                            </form>
+                        }
+                        @if (User.IsInRole("User"))
+                        {
+                            <a asp-page="/Orders/Create" asp-route-gameId="@game.Id" class="btn btn-sm btn-success">
+                                Сделать предзаказ
                             </a>
-                        </form>
+                        }
                     </td>
                 </tr>
             }
         </tbody>
     </table>
+
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="mt-4">
+            <a asp-page="/Orders/Index" class="btn btn-primary shadow-sm">Перейти к предзаказам →</a>
+        </div>
+    }
 </div>

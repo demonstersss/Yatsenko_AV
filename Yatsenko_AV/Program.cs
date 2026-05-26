@@ -1,11 +1,16 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Serilog;
 using Yatsenko_AV.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("ApplicationContext") ?? throw new InvalidOperationException("Connection string 'ApplicationContext' not found.");
+
+builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlite(connectionString));
 
 var db = new SwitchDb(builder);
 
+builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 
 Log.Logger = new LoggerConfiguration()
@@ -30,6 +35,8 @@ builder.Services.AddAuthorization(options =>
 	options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
 });
 
+
+
 var app = builder.Build();
 
 
@@ -49,6 +56,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();
+
+app.MapControllers();
 app.MapRazorPages()
    .WithStaticAssets();
 

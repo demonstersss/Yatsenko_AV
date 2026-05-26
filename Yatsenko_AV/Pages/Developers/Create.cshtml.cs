@@ -5,9 +5,10 @@ using Yatsenko_AV.Models;
 
 namespace Yatsenko_AV.Pages.Developers
 {
+	[Authorize(Roles = "Admin")]
 	public class CreateModel : PageModel
 	{
-		[Authorize(Roles = "Admin")]
+		
 		private readonly ApplicationContext _context;
 
 		public CreateModel(ApplicationContext context)

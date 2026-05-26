@@ -1,0 +1,29 @@
+@page "{id:int}"
+@model Yatsenko_AV.Pages.Orders.DeleteModel
+@{
+    ViewData["Title"] = "Удалить предзаказ";
+}
+
+<div class="container mt-4">
+    <h2>🗑️ Удалить предзаказ</h2>
+    <h3 class="text-danger">Вы уверены, что хотите отменить этот предзаказ?</h3>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">Игра</dt>
+            <dd class="col-sm-10">@Model.Order.Game?.Name</dd>
+            <dt class="col-sm-2">Покупатель</dt>
+            <dd class="col-sm-10">@Model.Order.CustomerName</dd>
+            <dt class="col-sm-2">Дата</dt>
+            <dd class="col-sm-10">@Model.Order.OrderDate.ToLocalTime().ToString("g")</dd>
+            <dt class="col-sm-2">Количество</dt>
+            <dd class="col-sm-10">@Model.Order.Quantity шт.</dd>
+        </dl>
+
+        <form method="post">
+            <input type="hidden" asp-for="Order.Id" /> 
+            <button type="submit" class="btn btn-danger">Удалить</button>
+            <a asp-page="./Index" class="btn btn-secondary">Отмена</a>
+        </form>
+    </div>
+</div>
