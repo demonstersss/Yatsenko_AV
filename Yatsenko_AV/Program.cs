@@ -4,9 +4,9 @@ using Yatsenko_AV.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-// var connectionString = builder.Configuration.GetConnectionString("ApplicationContext") ?? throw new InvalidOperationException("Connection string 'ApplicationContext' not found.");
+var connectionString = builder.Configuration.GetConnectionString("ApplicationContext") ?? throw new InvalidOperationException("Connection string 'ApplicationContext' not found.");
 
-// builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlite(connectionString));
+builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlite(connectionString));
 
 var db = new SwitchDb(builder);
 
